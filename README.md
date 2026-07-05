@@ -1,120 +1,171 @@
-# Loop Engineering v5.3
+# Loop Engineering
 
-> Automated paper quality audit system for TMLR submissions. 91 rules, 15 checks, 15 modules.
+一个帮你检查论文有没有问题的工具。你把论文的 LaTeX 文件丢给它，它会自动扫描 91 条规则，告诉你哪里有问题、哪里需要改。
 
-## What It Does
+做这个工具的原因：我投 TMLR 的时候，每次都要从头检查格式、引用、统计方法、写作质量，很烦。后来我把 3 篇论文、11 轮审稿中发现的所有问题整理成规则，写成了这个自动化工具。
 
-Catches problems in your paper before reviewers do. Checks formatting, citations, statistics, methodology, LaTeX compilation, and semantic claims — all automated.
+---
 
-## Quick Start
+## 这个工具能干什么
+
+简单说，它帮你做三件事：
+
+1. **提交前检查** -- 论文投出去之前，帮你扫一遍有没有硬伤（引用缺失、统计方法不对、格式不合规等）
+2. **质量评估** -- 给你的论文打分，跟 TMLR 已发表论文做对比
+3. **跨论文关联** -- 如果你同时投多篇论文，它能发现一篇论文的问题是否在其他论文里也存在
+
+---
+
+## 怎么用
+
+### 最简单的用法
 
 ```bash
-# Full pre-submission audit
-python submission_audit.py /path/to/paper/main.tex
+# 检查一篇论文
+python submission_audit.py 论文目录/main.tex
 
-# Quality checks only
-python quality_checks.py /path/to/paper/
+# 只跑质量检查
+python quality_checks.py 论文目录/
 
-# Tier 1 pre-review scan
-python pre_review.py /path/to/paper/
+# 只做第一轮快速扫描（检查最严重的问题）
+python pre_review.py 论文目录/
+```
 
-# Check citation accuracy via Semantic Scholar
-python scholar_verify.py /path/to/paper/
+### 完整流程
 
-# LaTeX compilation check
-python latex_check.py /path/to/paper/
-
-# Global status dashboard
+```bash
+# 1. 查看所有论文的状态
 python status.py --all
+
+# 2. 初始化一篇新论文（生成骨架文件）
+python init_paper.py 论文ID "论文标题" --venue TMLR
+
+# 3. 写论文...
+
+# 4. 跑一遍检查
+python pre_review.py 论文ID
+
+# 5. 改完问题后，推进到下一阶段
+python advance_phase.py 论文ID
+
+# 6. 收到审稿意见后，逐条回复
+python respond.py 论文ID
 ```
 
-## What It Checks (91 Rules)
+---
 
-| Category | Count | Examples |
-|----------|:---:|------|
-| **Format** | 12 | TMLR compliance, anonymization, figure quality, dual-version consistency |
-| **Citations** | 15 | Ghost refs, accuracy, Semantic Scholar verification, self-cite rate |
-| **Statistics** | 18 | CI coverage, effect sizes, multiple comparison correction, power analysis |
-| **Consistency** | 14 | Numerical cross-validation, symbol definitions, bibentry format |
-| **Methodology** | 11 | Small sample N, selective reporting, cherry-picking detection |
-| **LaTeX** | 12 | bibitem format, cite/bib matching, ref/label, aux/log analysis |
-| **Semantics** | 9 | "First" claim verification, novelty search |
+## 文件说明
 
-## Architecture
+### 配置文件（告诉工具你要检查什么）
+
+| 文件 | 干什么用的 |
+|------|----------|
+| `registry.yaml` | 论文登记表。每篇论文的 ID、标题、存放路径、当前阶段、自评分，都记在这里。工具读这个文件知道你有哪些论文。 |
+| `rulebook.yaml` | 91 条检查规则。按严重程度分成 4 个等级：必须改的（Tier 1）、建议改的（Tier 2）、可以改的（Tier 3）、防审稿人攻击的（Defense）。 |
+| `cross_ref.yaml` | 跨论文问题关联。比如你在论文 A 里发现"摘要数字太多"，它会自动检查论文 B、C 有没有同样的问题。 |
+| `tmlr_baselines.yaml` | TMLR 已发表论文的基准数据。收录了 5 篇 TMLR 论文的数据集数量、模型数量、是否报告了置信区间等信息，用来跟你的论文做对比。 |
+
+### 审计引擎（核心检查逻辑）
+
+| 文件 | 干什么用的 |
+|------|----------|
+| `submission_audit.py` | 提交前全面检查。15 项检查：TMLR 格式合规、匿名化是否干净、图片质量、arXiv 版本和 TMLR 版本是否一致、引用是否有幽灵引用（引用了但列表里没有的文献）等。 |
+| `quality_checks.py` | 论文质量检查。9 项检查（Q1-Q9）：置信区间是否覆盖了所有关键比较、效应量是否报告、是否做了多重比较校正、样本量是否太小、是否有选择性报告（只报好的结果）等。 |
+| `review_engine.py` | 批量扫描引擎。按 3 个层级依次扫描：先查 Tier 1（必须改的），再查 Tier 2（建议改的），最后查 Tier 3（可以改的）。 |
+| `pre_review.py` | 快速预审。只跑 Tier 1 的规则，帮你快速发现最严重的问题。适合写完论文后先跑一遍。 |
+
+### v5.3 新增
+
+| 文件 | 干什么用的 |
+|------|----------|
+| `scholar_verify.py` | 引用验证。调用 Semantic Scholar API，检查你引用的每篇文献是否真实存在、标题是否正确、你是否漏掉了相关的已有工作。还能检测"幽灵引用"（引用列表里有但正文没提的文献）和自引率。 |
+| `latex_check.py` | LaTeX 编译检查。检查 bibitem 格式是否正确、正文里的 \cite 和参考文献列表是否对得上、\ref 和 \label 是否匹配、编译日志里有没有警告和错误。 |
+
+### 分析工具（更深入的分析）
+
+| 文件 | 干什么用的 |
+|------|----------|
+| `cross_review.py` | 跨论文模式扫描。你同时投多篇论文时，它会对比所有论文，找出共性问题。比如某篇论文的统计方法有问题，它会检查其他论文是不是也用了同样的方法。 |
+| `paper_quality.py` | 四维质量评估。从重要性、严谨性、清晰度、创新性四个维度给论文打分，每个维度 1-5 分。 |
+| `score_calibrator.py` | 评分校准。你给自己论文打的分可能偏高或偏低，这个工具拿 TMLR 已发表论文的分数做校准，告诉你你的自评是否合理。 |
+| `citation_checker.py` | 引用准确性检查。逐条检查参考文献：作者名对不对、年份对不对、期刊名对不对、有没有拼写错误。 |
+| `portfolio_health.py` | 组合健康度。如果你同时投多篇论文，它会给出一个整体评分：有多少篇准备好了、有多少篇还有问题、整体进度如何。 |
+
+### 辅助工具
+
+| 文件 | 干什么用的 |
+|------|----------|
+| `dual_submit.py` | 双版本生成。同时生成 arXiv 版和 TMLR 版的提交包，格式自动转换。 |
+| `advance_phase.py` | 阶段推进。论文分 6 个阶段（基线评估 -> 格式转换 -> 内容审阅 -> 润色 -> 匿名化 -> 提交就绪），这个工具在推进前会检查前置条件是否满足。 |
+| `init_paper.py` | 论文初始化。输入论文 ID 和标题，自动生成论文骨架目录和配置文件。 |
+| `respond.py` | 审稿回复。交互式工具，逐条显示审稿人的意见，你标记每条是"已修改"还是"不同意"，最后生成回复文档。 |
+| `status.py` | 状态仪表盘。显示所有论文的当前阶段、自评分、是否有未解决的问题。 |
+
+---
+
+## 91 条规则是什么
+
+从 3 篇论文、11 轮审稿中总结出来的常见问题。分 4 个等级：
+
+**Tier 1（必须改）**：不改就不能投。比如：
+- C1 -- 你说了"首次发现"但没引用相关文献
+- L1 -- 遗漏了重要的已有工作
+- C6 -- 论文内部自相矛盾
+- M1 -- 实验设计有混淆变量
+
+**Tier 2（建议改）**：改了论文质量会明显提升。比如：
+- 引用了但正文没提到的"幽灵引用"
+- 没有报告效应量
+- 没有做多重比较校正
+
+**Tier 3（可以改）**：锦上添花。比如：
+- 术语不一致
+- 图表标签不清楚
+- 写作可以更精炼
+
+**Defense（防审稿人）**：模拟恶意审稿人可能攻击的点，提前准备好回应。
+
+---
+
+## TMLR 基准对比是什么
+
+工具里内置了 5 篇已发表 TMLR 论文的数据。跑完检查后，它会把你的论文和这些基准做对比：
+
+| 指标 | TMLR 中位数 | 典型结果 |
+|------|-----------|---------|
+| 数据集数量 | 4 | 8 |
+| 模型数量 | 3 | 5 |
+| 是否指定了随机种子 | 0% 的论文 | 100% |
+| 是否报告了置信区间 | 0% 的论文 | 100% |
+| 是否报告了效应量 | 0% 的论文 | 100% |
+
+这样你就知道你的论文在 TMLR 里大概是什么水平。
+
+---
+
+## 版本历史
+
+| 版本 | 日期 | 改了什么 |
+|------|------|---------|
+| v5.3 | 2026-07-05 | 加了引用验证（scholar_verify）和 LaTeX 编译检查（latex_check），规则总数到 91 条 |
+| v5.0 | 2026-07-03 | 加了提交前全面检查（submission_audit）和质量检查（quality_checks Q1-Q9） |
+| v4.0 | 2026-07-02 | 加了全局中枢、自动预审、TMLR 基准对比 |
+| v3.1 | 2026-07-01 | 加了第三方审阅和回归测试 |
+| v2.0 | 2026-06-28 | 多轮递进式审阅 |
+| v1.0 | 2026-06-27 | 单论文 6 阶段循环 |
+
+---
+
+## 依赖
 
 ```
-Configuration
-  ├── registry.yaml          Paper registry (ID, path, status, dependencies)
-  ├── rulebook.yaml          91 review rules (4 tiers)
-  ├── cross_ref.yaml         Cross-paper issue correlation (8 patterns)
-  └── tmlr_baselines.yaml    TMLR published paper baselines (5 papers)
-
-Audit Engine
-  ├── submission_audit.py    15 pre-submission checks
-  ├── quality_checks.py      9 quality checks (Q1-Q9)
-  ├── review_engine.py       3-tier batch scanning
-  └── pre_review.py          Tier 1 pre-review scan
-
-v5.3 New
-  ├── scholar_verify.py      Semantic Scholar API citation verification
-  └── latex_check.py         LaTeX compilation checks
-
-Analysis Tools
-  ├── cross_review.py        Cross-paper pattern scanning
-  ├── paper_quality.py       4-dimension quality assessment
-  ├── score_calibrator.py    TMLR calibrated scoring
-  ├── citation_checker.py    Citation accuracy verification
-  └── portfolio_health.py    Portfolio health dashboard
-
-Utilities
-  ├── dual_submit.py         arXiv + TMLR dual-version generation
-  ├── advance_phase.py       6-phase advancement with gate checks
-  ├── init_paper.py          Paper skeleton generator
-  ├── respond.py             Reviewer response tracker
-  └── status.py              Global status dashboard
+pip install pyyaml requests
 ```
 
-## Rule Tiers
+就这两个。pyyaml 读配置文件，requests 调 Semantic Scholar API。
 
-- **Tier 1 (Blocking)**: Must fix before submission. Ghost refs, missing controls, contradictions.
-- **Tier 2 (Quality)**: Important for paper quality. Small N, missing CIs, cherry-picking.
-- **Tier 3 (Polish)**: Minor refinements. Terminology, figure labels, writing clarity.
-- **Defense**: Adversarial patterns. Prepare for hostile reviewer attacks.
+---
 
-## Cross-Paper Tracking
+## 许可
 
-Finds issues in one paper that may exist in others:
-
-```yaml
-cross_references:
-  - pattern_id: "abstract_too_dense"
-    found_in: ["paper_a", "paper_b"]
-    propagate_to: ["paper_c"]
-```
-
-## TMLR Baseline Comparison
-
-Compares your paper against 5 published TMLR papers:
-
-| Metric | TMLR Median | Loop Engine Result |
-|--------|:---:|:---:|
-| Datasets | 4 | 8 |
-| Models | 3 | 5 |
-| Seeds specified | 0% | 100% |
-| CI reported | 0% | 100% |
-| Effect sizes | 0% | 100% |
-
-## Version History
-
-| Version | Date | Changes |
-|---------|------|---------|
-| v5.3 | 2026-07-05 | +scholar_verify, +latex_check, 91 rules |
-| v5.0 | 2026-07-03 | +submission_audit, +quality_checks (Q1-Q9) |
-| v4.0 | 2026-07-02 | Global hub + auto pre-review + TMLR baseline |
-| v3.1 | 2026-07-01 | Third-party review + regression testing |
-| v2.0 | 2026-06-28 | Multi-round progressive review |
-| v1.0 | 2026-06-27 | Single-paper 6-phase pipeline |
-
-## License
-
-MIT
+MIT。随便用。

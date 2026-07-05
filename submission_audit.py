@@ -431,6 +431,43 @@ def check_latex_compilation(paper_dir):
         return [('LATEX_ERROR', 'minor', f'LaTeX check error: {e}')]
 
 
+def check_skill_bridge(paper_id, paper_dir, text):
+    """Run v5.3 skill bridge checks (light-citation, light-typesetting, light-result-analysis)."""
+    try:
+        from skill_bridge import run_citation_check, run_precheck_log, run_submission_check, check_claim_evidence
+        issues = []
+        issues.extend(run_citation_check(paper_dir, text))
+        issues.extend(run_precheck_log(paper_dir))
+        issues.extend(run_submission_check(paper_dir, text))
+        issues.extend(check_claim_evidence(text))
+        return [(code, sev, msg) for code, sev, msg in issues if sev != 'pass']
+    except ImportError:
+        return []
+    except Exception as e:
+        return [('SKILL_BRIDGE', 'minor', f'Skill bridge error: {e}')]
+
+
+def check_agent_review(paper_id):
+    """Load cached agent review if available."""
+    try:
+        from agent_review import load_cached_review, format_for_audit
+        result = load_cached_review(paper_id)
+        if result:
+            issues = format_for_audit(result)
+            # Add summary
+            score = result.get('score', '?')
+            verdict = result.get('verdict', 'unknown')
+            issues.insert(0, ('AGENT_SUMMARY', 'minor',
+                f'Agent review: score={score}/10, verdict={verdict}'))
+            return issues
+        return [('AGENT_REVIEW', 'minor',
+                'No cached agent review. Run: python agent_review.py PAPER_ID --generate')]
+    except ImportError:
+        return []
+    except Exception as e:
+        return [('AGENT_ERROR', 'minor', f'Agent review error: {e}')]
+
+
 def run_audit(paper_id, paper, strict=False):
     """Run complete audit."""
     paper_dir = AETTL_DIR / paper['path']
@@ -458,6 +495,8 @@ def run_audit(paper_id, paper, strict=False):
     all_issues.extend(check_dual_consistency(paper_dir))
     all_issues.extend(check_quality_gates(text))
     all_issues.extend(check_latex_compilation(paper_dir))
+    all_issues.extend(check_skill_bridge(paper_id, paper_dir, text))
+    all_issues.extend(check_agent_review(paper_id))
     
     critical  = [i for i in all_issues if i[1] == 'critical']
     important = [i for i in all_issues if i[1] == 'important']

@@ -10,3 +10,7 @@ __pycache__/
 *.blg
 scholar_cache.json
 .env
+__pycache__/
+*.pyc
+scholar_cache.json
+*.log

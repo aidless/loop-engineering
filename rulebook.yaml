@@ -1,6 +1,6 @@
 # Loop Engineering v4.0 — Reusable Review Rulebook
 # 82 patterns extracted from 11 review rounds across 3 papers
-# Auto-applied by pre_review.py
+# NOTE: pre_review.py currently runs its own hard-coded Tier 1 checks and does NOT load this file.
 
 # ============================================================
 # Tier 1: Blocking — must pass before submission
@@ -10,7 +10,7 @@ tier_1:
     id: C1
     category: claim_evidence
     description: "\"First\"/\"Novel\" claim undermined by prior work"
-    auto_check: "grep for 'first|novel|we are the first' in abstract+intro; for each hit, search Semantic Scholar for prior work"
+    auto_check: "regex prefilter in pre_review.py (manual Scholar check; no live search implemented)"
     severity: critical
     
   L1_missing_prior:

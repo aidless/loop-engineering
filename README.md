@@ -26,6 +26,7 @@ python .loop/advance_phase.py my_paper
 # 交互式回复审稿意见
 python .loop/respond.py PAPER-A
 ```
+> 注意：当前 `pre_review.py` 仅实现 Tier 1（内置硬编码检查）；`--tier 2/3` 与 `--json` 为预留接口，`rulebook.yaml` 暂未接入脚本。
 
 ## 目录结构
 

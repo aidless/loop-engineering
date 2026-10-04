@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Loop Engineering v4.1 — Automated Pre-Review Scanner
-Applies Tier 1 rules from rulebook.yaml to a paper's main.tex
+Tier 1 pre-review scan for a paper's main.tex (hard-coded checks; rulebook.yaml is not loaded by this script).
 
 Usage:
     python pre_review.py PAPER_ID              # Run pre-review on a paper
@@ -127,8 +127,8 @@ Examples:
         """
     )
     parser.add_argument('paper_id', help='Paper ID (e.g., PAPER-A, PAPER-B)')
-    parser.add_argument('--tier', '-t', type=int, default=1, choices=[1, 2, 3], help='Max tier to check (1-3)')
-    parser.add_argument('--json', '-j', action='store_true', help='Output as JSON')
+    parser.add_argument('--tier', '-t', type=int, default=1, choices=[1, 2, 3], help='Max tier to check (only tier 1 is implemented)')
+    parser.add_argument('--json', '-j', action='store_true', help='Output as JSON (not implemented yet)')
     args = parser.parse_args()
     
     paper_id = args.paper_id

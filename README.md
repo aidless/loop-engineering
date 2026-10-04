@@ -1,5 +1,7 @@
 # Loop Engineering v4.0
 
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 > 从单论文循环到跨论文智能审阅系统
 
 ## 设计理念

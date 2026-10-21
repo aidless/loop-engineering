@@ -1,0 +1,460 @@
+{
+  "paper_id": "flagship_20260719_112634",
+  "timestamp": "2026-07-19T11:26:35.089167",
+  "score": -144.5,
+  "total": 88,
+  "by_priority": {
+    "P0": 78,
+    "P1": 3,
+    "P2": 7
+  },
+  "by_source": {
+    "submission_audit": 1,
+    "latex_check": 1,
+    "quality_checks": 1,
+    "skill_bridge": 1,
+    "agent": 1
+  },
+  "issues": [
+    {
+      "code": "NO_TMLR_STY",
+      "priority": "P0",
+      "message": "Missing \\usepackage{tmlr}. Not in TMLR format."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: abdelghnyorogat2026understanding. Cite it or rem"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: alexiajolicoeurmartineaun.d.multi. Cite it or re"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: anupampurwar2026focal. Cite it or remove from bi"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: henrypengzou2025testnuc. Cite it or remove from "
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: jiefengchen2025sets. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: josefchen2026when. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: kumar2026memarchitect. Cite it or remove from bi"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: lacasse2026moss. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: liu2026contagionnetworks. Cite it or remove from"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: liu2026contagiontensor. Cite it or remove from b"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: michaelwinikoffn.d.challenges. Cite it or remove"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: michaelyli2026quasimotto. Cite it or remove from"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.accelerating. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.choice. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.comparison. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.cost. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.free. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.full. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.manticore. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.many. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.modal. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.numerical. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.optimal. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.scale. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.simulation. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.stress. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.student. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: niklasmuennighoff2025simple. Cite it or remove f"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: ningningwangn.d.efficient. Cite it or remove fro"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: runzeliun.d.surpass. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: sirujiang2026unified. Cite it or remove from bib"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: talebirad2026from. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: wang2026state. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: wu2026memory. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: yadonglin.d.baichuan. Cite it or remove from bib"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: yongyibay2026when. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: zeyaoma2025dynamic. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: zhenyen.d.llasa. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: zuyanliun.d.pushing. Cite it or remove from bib."
+    },
+    {
+      "code": "CITE_AUTHOR",
+      "priority": "P2",
+      "message": "bertalanic2026cost: bib says 'Bertalani\\v{c', expected 'Bertalanič'"
+    },
+    {
+      "code": "ABSTRACT_DENSE",
+      "priority": "P2",
+      "message": "Up to 7 numbers in one abstract sentence"
+    },
+    {
+      "code": "CI_COVERAGE",
+      "priority": "P1",
+      "message": "Low CI coverage: 9 CIs for 66 statistical claims (14%). Add bootstrap CIs or ±SE"
+    },
+    {
+      "code": "EFFECT_SIZE",
+      "priority": "P1",
+      "message": "5 effect sizes for 24 statistical tests (21%). Consider adding effect sizes to m"
+    },
+    {
+      "code": "ES_ABSTRACT",
+      "priority": "P2",
+      "message": "Abstract reports statistical significance without effect size. Consider adding d"
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{asai2023selfrag}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{bai2022constitutional}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{bay2026sampling}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{bertalanic2026cost}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{brown2020language}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{cheng2026agenticsts}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{christiano2017deep}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{du2024improving}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{gao2024retrieval}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{gehman2020realtoxicityprompts}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{guo2017calibration}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{hao2026tooluse}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{huang2026cagecal}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{izacard2022fusion}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{jiang2023active}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{kadavath2022language}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{kaplan2020scaling}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{lee2023rlaif}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{lewis2020rag}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{li2023camel}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liang2023multiagent}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liang2026mirage}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{lin2022teach}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liu2023lost}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liu2026memorycontagion}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{ouyang2022training}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{packer2023memgpt}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{park2023generative}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{schick2021debiasing}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{touvron2023llama}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{wei2022chain}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{wei2022emergent}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{wu2024memochat}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{xu2026trek}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{zhao2023survey}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "UNDEF_REF",
+      "priority": "P0",
+      "message": "Reference '\\ref{sec:discussion}' has no matching \\label."
+    },
+    {
+      "code": "UNDEF_REF",
+      "priority": "P0",
+      "message": "Reference '\\ref{sec:related-work}' has no matching \\label."
+    },
+    {
+      "code": "UNDEF_REF",
+      "priority": "P0",
+      "message": "Reference '\\ref{sec:threats}' has no matching \\label."
+    },
+    {
+      "code": "UNUSED_LABEL",
+      "priority": "P2",
+      "message": "Label '\\label{tab:power}' is never referenced."
+    },
+    {
+      "code": "NO_DOI",
+      "priority": "P2",
+      "message": "No DOIs found in text. Add DOIs to bibliography entries."
+    },
+    {
+      "code": "NO_SLICE",
+      "priority": "P2",
+      "message": "25 statistical claims but no slice/subgroup analysis mentioned. Consider per-cat"
+    },
+    {
+      "code": "NO_STD",
+      "priority": "P1",
+      "message": "4 means reported but 0 with ±std. Report mean ± std for reproducibility."
+    },
+    {
+      "code": "AGENT_REVIEW",
+      "priority": "P2",
+      "message": "No cached agent review. Run: python agent_review.py PAPER_ID --generate"
+    }
+  ]
+}

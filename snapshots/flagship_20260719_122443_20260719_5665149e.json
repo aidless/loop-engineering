@@ -1,0 +1,305 @@
+{
+  "paper_id": "flagship_20260719_122443",
+  "timestamp": "2026-07-19T12:24:44.175335",
+  "score": -83.0,
+  "total": 57,
+  "by_priority": {
+    "P0": 44,
+    "P1": 3,
+    "P2": 10
+  },
+  "by_source": {
+    "submission_audit": 1,
+    "latex_check": 1,
+    "quality_checks": 1,
+    "skill_bridge": 1,
+    "agent": 1
+  },
+  "issues": [
+    {
+      "code": "AUTHOR_EXPOSED",
+      "priority": "P0",
+      "message": "Author not anonymous: Zewen Liu \\\\ Qilu Institute of Technology \\\\ \\texttt{liuze"
+    },
+    {
+      "code": "EMAIL_EXPOSED",
+      "priority": "P2",
+      "message": "Email-like \\texttt{}: liuzewen@qlnu.edu.cn"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: askell2021gpt3. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: bai2022constitutional. Cite it or remove from bi"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: eungyeupkim2026measuring. Cite it or remove from"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: huanxinsheng2025analyzing. Cite it or remove fro"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: luo2026abstention. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: mathieucocheteuxn.d.uncertainty. Cite it or remo"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.analysis. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.automation. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.calibration. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.careful. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.evaluation. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.methods. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: n.d.state. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: ouyang2022training. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: pisupati2026counsel. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: schulman2017ppo. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: touvron2023llama2. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: vaswani2017attention. Cite it or remove from bib"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: wei2022chain. Cite it or remove from bib."
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: xiaoleiguo2026graphbu. Cite it or remove from bi"
+    },
+    {
+      "code": "GHOST_REF",
+      "priority": "P0",
+      "message": "Bibliography entry never cited: xinzheli2025survey. Cite it or remove from bib."
+    },
+    {
+      "code": "CITE_AUTHOR",
+      "priority": "P2",
+      "message": "bertalanic2026cost: bib says 'Bertalani\\v{c', expected 'Bertalanič'"
+    },
+    {
+      "code": "CI_COVERAGE",
+      "priority": "P1",
+      "message": "Moderate CI coverage: 32 CIs for 103 claims (31%). Consider adding CIs to more r"
+    },
+    {
+      "code": "UNEQUAL_N",
+      "priority": "P2",
+      "message": "Unequal sample sizes: N ranges from 3 to 360. Smaller conditions may be underpow"
+    },
+    {
+      "code": "POWER_LOW_N",
+      "priority": "P1",
+      "message": "Smallest N=3. MDE at 80% power: d=2.29. Only effects larger than d=2.29 can be d"
+    },
+    {
+      "code": "POWER_LOW",
+      "priority": "P2",
+      "message": "Some reported effect sizes (d=0.30) may be underpowered at N=30 (est. power=0.21"
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{bertalanic2026cost}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{button2013power}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{chen2026combining}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{chiang2024chatbot}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{du2024improving}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{foerster2016learning}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{foerster2018emergent}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{guo2017calibration}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{huang2026cagecal}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{ioannidis2005most}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{itkin2026delayed}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{jiang2021can}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{kapetanakis2014balanced}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{li2023camel}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liu2026calibration}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liu2026impossible}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{liu2026mmepc}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{park2023generative}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{richter2024bridging}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{tmlr251205925}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{tmlr260607950}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{zheng2023chatbot}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "UNUSED_LABEL",
+      "priority": "P2",
+      "message": "Label '\\label{fig:triangle}' is never referenced."
+    },
+    {
+      "code": "UNUSED_LABEL",
+      "priority": "P2",
+      "message": "Label '\\label{tab:anova_2x2}' is never referenced."
+    },
+    {
+      "code": "UNUSED_LABEL",
+      "priority": "P2",
+      "message": "Label '\\label{tab:anova_2x2_contrast}' is never referenced."
+    },
+    {
+      "code": "NO_DOI",
+      "priority": "P2",
+      "message": "No DOIs found in text. Add DOIs to bibliography entries."
+    },
+    {
+      "code": "PAIRED_TEST",
+      "priority": "P1",
+      "message": "Paired design detected but no paired test mentioned. Use paired t / Wilcoxon sig"
+    },
+    {
+      "code": "NO_SLICE",
+      "priority": "P2",
+      "message": "57 statistical claims but no slice/subgroup analysis mentioned. Consider per-cat"
+    },
+    {
+      "code": "AGENT_REVIEW",
+      "priority": "P2",
+      "message": "No cached agent review. Run: python agent_review.py PAPER_ID --generate"
+    }
+  ]
+}

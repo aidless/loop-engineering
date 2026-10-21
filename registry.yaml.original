@@ -1,0 +1,106 @@
+dependencies:
+- from: PAPER-B
+  relation: PAPER-C tests a mitigation (evaluator calibration) for the coupling problem
+    characterized in PAPER-B
+  to: PAPER-C
+- from: PAPER-B
+  relation: Both use the same review methodology and share statistical patterns
+  to: PAPER-A
+papers:
+  calibration_contagion:
+    experiments_complete: unknown
+    has_loop: false
+    id: PAPER-C
+    last_review: null
+    loop_version: null
+    path: calibration_contagion/
+    phase: 0
+    phase_name: 待开始
+    reviewer_comments: false
+    score_self: null
+    score_tmlr_calibrated: null
+    short_title: Calibration Contagion
+    title: 'Calibrating the Evaluator: Does Probability Calibration Mitigate Preference
+      Coupling?'
+    type: empirical_study
+    venue: TMLR
+  calibration_effects:
+    has_loop: false
+    id: PAPER-D
+    path: CALIBRATION_EFFECTS/
+    phase: 0
+    phase_name: 待评估
+    short_title: Calibration Effects
+    title: (待确认)
+    type: unknown
+    venue: TMLR
+  closing_landscape:
+    experiments_complete: false
+    has_loop: true
+    id: closing_landscape
+    last_review: null
+    loop_version: '4.0'
+    notes: Initialized 2026-07-02
+    path: closing_landscape/
+    phase: 0
+    phase_name: 基线评估
+    reviewer_comments: false
+    score_self: null
+    score_tmlr_calibrated: null
+    short_title: 'Closing the Calibration Landscape: A Mul'
+    title: 'Closing the Calibration Landscape: A Multi-Evaluator Ensemble That Reduces
+      Coupling Without Increasing Noise'
+    type: empirical_study
+    venue: TMLR
+  flagship:
+    has_loop: false
+    id: PAPER-E
+    path: FLAGSHIP/
+    phase: 0
+    phase_name: 待评估
+    short_title: Flagship
+    title: (待确认)
+    type: unknown
+    venue: TMLR
+  resampling_calibration:
+    experiments_complete: true
+    has_loop: true
+    id: PAPER-A
+    last_review: '2026-07-02'
+    loop_version: '3.1'
+    path: RESAMPLING_CALIBRATION/
+    phase: 5
+    phase_name: 提交就绪
+    reviewer_comments: true
+    score_self: 9.5
+    score_tmlr_calibrated: null
+    short_title: N-Sensitive Calibration
+    title: 'When More Data Changes the Story: N-Sensitive Calibration of Tree Ensembles
+      on Frozen LLM Embeddings'
+    type: empirical_characterization
+    venue: TMLR
+  temporal_dynamics:
+    experiments_complete: false
+    has_loop: false
+    id: PAPER-B
+    last_review: '2026-07-02'
+    loop_version: null
+    notes: N=3-5 throughout. Needs N≥10 confirmatory experiment. High self-citation
+      rate (57%).
+    path: TEMPORAL_DYNAMICS/
+    phase: 0
+    phase_name: 待开始
+    reviewer_comments: false
+    score_self: 7.3
+    score_tmlr_calibrated: null
+    short_title: Temporal Dynamics
+    title: 'Beyond Point Estimates: Temporal Dynamics, Evaluator Effects, and Protocol
+      Interventions in Evaluator Preference Coupling'
+    type: empirical_characterization
+    venue: TMLR
+summary:
+  avg_self_score: 8.4
+  papers_in_review: 0
+  papers_phase_5_ready: 1
+  papers_with_loop: 2
+  total_papers: 6

@@ -1,0 +1,90 @@
+{
+  "paper_id": "closing_landscape",
+  "timestamp": "2026-07-19T12:24:00.214707",
+  "score": 0.0,
+  "total": 14,
+  "by_priority": {
+    "P0": 3,
+    "P1": 4,
+    "P2": 7
+  },
+  "by_source": {
+    "submission_audit": 1,
+    "quality_checks": 1,
+    "latex_check": 1,
+    "skill_bridge": 1,
+    "agent": 1
+  },
+  "issues": [
+    {
+      "code": "NO_EFFECT_SIZE",
+      "priority": "P1",
+      "message": "No effect sizes detected. Add Cohen's d or equivalent."
+    },
+    {
+      "code": "NO_PVALUE",
+      "priority": "P2",
+      "message": "No p-values detected. Consider adding statistical tests."
+    },
+    {
+      "code": "CITE_AUTHOR",
+      "priority": "P2",
+      "message": "mills2026verification: bib says 'Mills', expected 'Wang'"
+    },
+    {
+      "code": "ABSTRACT_DENSE",
+      "priority": "P2",
+      "message": "Up to 11 numbers in one abstract sentence"
+    },
+    {
+      "code": "NO_SUPPLEMENTARY",
+      "priority": "P2",
+      "message": "No reference to supplementary material. Consider including detailed results, rob"
+    },
+    {
+      "code": "POWER_LOW_N",
+      "priority": "P1",
+      "message": "Smallest N=5. MDE at 80% power: d=1.77. Only effects larger than d=1.77 can be d"
+    },
+    {
+      "code": "POWER_LOW",
+      "priority": "P2",
+      "message": "Some reported effect sizes (d=0.42) may be underpowered at N=15 (est. power=0.21"
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{kull2017temperature}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{kumar2019verified}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "CITE_NO_BIB",
+      "priority": "P0",
+      "message": "Citation '\\cite{wang2021revisiting}' has no matching \\bibitem entry."
+    },
+    {
+      "code": "NO_DOI",
+      "priority": "P2",
+      "message": "No DOIs found in text. Add DOIs to bibliography entries."
+    },
+    {
+      "code": "PAIRED_TEST",
+      "priority": "P1",
+      "message": "Paired design detected but no paired test mentioned. Use paired t / Wilcoxon sig"
+    },
+    {
+      "code": "NO_STD",
+      "priority": "P1",
+      "message": "13 means reported but 0 with ±std. Report mean ± std for reproducibility."
+    },
+    {
+      "code": "AGENT_REVIEW",
+      "priority": "P2",
+      "message": "No cached agent review. Run: python agent_review.py PAPER_ID --generate"
+    }
+  ]
+}

@@ -14,3 +14,22 @@ __pycache__/
 *.pyc
 scholar_cache.json
 *.log
+
+
+# --- added by WorkBuddy takeover 2026-10-21 ---
+.env.*
+!.env.example
+!.env.template
+node_modules/
+.venv/
+venv/
+dist/
+build/
+*.egg-info/
+.DS_Store
+data/
+models/
+.regression_tmp/
+*.bak
+
+*.bak*

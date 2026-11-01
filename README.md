@@ -4,6 +4,66 @@
 
 > 从单论文循环到跨论文智能审阅系统
 
+## 这个项目解决什么问题 / 为什么重要
+
+每篇论文的审阅若从零开始，发现的模式无法跨论文复用。Loop Engineering 把审阅从
+「单篇一次性」升级为「跨论文智能系统」：以**可复用规则**（`rulebook.yaml`）、**TMLR
+已发表基线**（`tmlr_baselines.yaml`）、**跨论文模式关联**（`cross_ref.yaml`）为中枢，
+让每篇新论文站在之前所有审阅的肩上。它的价值是**把审阅经验沉淀成资产**，而不是每次
+重新发明轮子。
+
+## 我用了什么方法
+
+- **六阶段流水线**：Phase 0（基线评估）→ 1（格式转换）→ 2（内容审阅★）→ 3（润色）
+  → 4（匿名化）→ 5（提交就绪），每阶段有前置条件、退出标准、最大轮次限制。
+- **三层审阅规则**：Tier 1（阻断，7 条）/ Tier 2（高优，10 条）/ Tier 3（润色，8 条），
+  从真实审阅实践提取，`rulebook.yaml` 共 47 条（含 defense/tier_2_plus/stats）。
+- **TMLR 基线对标**：5 篇已发表 TMLR 论文的关键特征（数据集数、模型数、CI/效应量报告率）
+  收录为基线，自动对比你的论文与 TMLR 中位数的差距。
+- **跨论文关联**：`cross_ref.yaml` 定义模式传播规则（如「某问题在 A 出现 → 应检查 B」）。
+
+## 结果如何
+
+- **可运行的仪表盘**：`python status.py --all` 输出 6 篇论文的全局状态、TMLR 基线中位数
+  （数据集 4 / 模型 3 / CI 0% / 效应量 0% / 中位分 7.0）。
+- **可运行的组合工具**：`portfolio_health.py`（组合健康度，6 篇，1 篇就绪）、
+  `cross_review.py`（跨论文扫描，但需要 main.tex 在场才产生报告——当前仓库内没有
+  `../Research/` 论文源，故运行会提示 "No papers with main.tex found"）。
+- **诚实缺口**：`pre_review.py` 仅实现 Tier 1（硬编码检查），`--tier 2/3` 与 `--json`
+  为预留接口，`rulebook.yaml` 未接入脚本——README 已如实标注。
+
+## 边界声明（证明什么 / 不证明什么）
+
+**证明（可复算）**：① 所有 Python 脚本通过 `python -m compileall -q .`（CI 验证）；②
+`rulebook.yaml` 三层规则数（7/10/8）与 `tmlr_baselines.yaml` 基线中位数（4/3/0%/0%/7.0）
+与仓库文件一致；③ `status.py --all` 与 `portfolio_health.py` 可运行并产出结构一致的结果。
+**不证明**：① 未声称「审阅已提升论文质量」——仓库内没有 `../Research/` 论文源（registry
+路径指向外部 `../Research/`，当前不存在），**没有任何论文在仓库内完成过实际审阅循环**；
+② 未声称规则库已机器化——`pre_review.py` 只实现 Tier 1 硬编码检查，Tier 2/3 与
+`rulebook.yaml` 尚未接入；③ 未声称 82 条完整规则已入库——`rulebook_full.yaml` 不存在，
+README 对此保持公开缺口。
+
+## 复算（Reproduction）
+
+```bash
+cd loop-engineering
+# 1) 全局仪表盘（6 篇论文 + TMLR 基线中位数）
+python3 status.py --all
+# 2) 组合健康度
+python3 portfolio_health.py
+# 3) 编译检查（CI 的核心验证）
+python3 -m compileall -q . ; echo $?   # 期望 0
+# 4) 规则数与基线核对
+python3 -c "import yaml; d=yaml.safe_load(open('rulebook.yaml')); print('tier_1',len(d['tier_1']),'tier_2',len(d['tier_2']),'tier_3',len(d['tier_3']))"
+python3 -c "import yaml; d=yaml.safe_load(open('tmlr_baselines.yaml')); print('baselines',len(d['baselines']))"
+# 5) 预审阅（对仓库内任一论文；因 ../Research 缺失会提示找不到 main.tex）
+python3 pre_review.py PAPER-A
+```
+
+> **诚实说明**：`../Research/` 目录不存在，故 `pre_review.py` / `quality_checks.py` /
+> `cross_review.py` 对仓库内注册论文会提示 "main.tex not found" 或 "Paper not found"。
+> 这是**路径依赖的运行时行为**，不是仓库缺陷；工具需要论文源在场才能产生完整输出。
+
 ## 设计理念
 
 **问题**: 每篇论文从零开始审阅，发现的模式无法跨论文复用。
@@ -45,15 +105,18 @@ loop-engineering/
 │   ├── citation_checker.py / scholar_verify.py / latex_check.py
 │   └── portfolio_health.py / quality_checks.py / dual_submit.py
 ├── registry.yaml                   ← 论文注册表
-├── rulebook.yaml                   ← 可自动化审阅规则
-├── tmlr_baselines.yaml             ← TMLR 已发表论文基线
+├── rulebook.yaml                   ← 可自动化审阅规则（47 条，含 tier_1/2/3 + defense/tier_2_plus/stats）
+├── tmlr_baselines.yaml             ← TMLR 已发表论文基线（5 篇）
 ├── cross_ref.yaml                  ← 跨论文模式关联
 ├── templates/phase_template.yaml
 ├── snapshots/                      ← 历史健康快照（append-only）
-└── reviews/ reports/ docs/         ← 产出与说明
-│
-└── PAPER_B/ ...
+├── reviews/                        ← 单论文评审记录（如 PAPER-E_review.json）
+├── reports                         ← 跨论文元审阅报告（**文件**，非目录）
+└── PAPER_B/ ...（注册在 registry.yaml，路径指向 ../Research/，不在本仓库内）
 ```
+
+> **注意**：`docs/` 目录**不存在**；`reports` 是**一个生成报告文件**，不是目录。仓库内没有
+> `docs/` 与独立 `reports/` 目录——本 README 早期版本对此的表述已更正。
 
 ## 五个核心工具
 

@@ -32,6 +32,16 @@
 - **诚实缺口**：`pre_review.py` 仅实现 Tier 1（硬编码检查），`--tier 2/3` 与 `--json`
   为预留接口，`rulebook.yaml` 未接入脚本——README 已如实标注。
 
+## Fail-closed 声明
+
+本系统对「未满足前置条件就推进」**默认 fail-closed**（`advance_phase.py`）：
+
+- **阶段推进门**：`advance_phase.py` 校验每阶段前置条件（Phase 1 编译 0 错误、Phase 2 无未解决 critical、Phase 4 零身份泄漏、Phase 5 用户手动签核）。任一不满足且未 `--force`/`--dry-run` → `sys.exit(1)` **拒绝推进**。Phase 5 的签核检查**恒返回 False**——必须用户手动确认或 `--force`，绝不自动放行。
+- **审计门**：`audit.py` 按优先级分类（P0 = **DESK REJECT RISK**，P1 = reviewer will ask，P2 = polish），`verdict` 阈值：score ≥8 READY / ≥6 REVISION NEEDED / else **NOT READY**——P0 未清即不可提交。
+- **诚实缺口**：`rulebook_full.yaml` 不存在、`pre_review.py` 仅 Tier 1、`../Research/` 不在场——README 如实标注，不把「缺」说成「有」。
+
+> 立场：宁可 `exit(1)` 拒绝推进，也不在未满足前置条件时放行；宁可标注缺口，也不声称未验证的能力。
+
 ## 边界声明（证明什么 / 不证明什么）
 
 **证明（可复算）**：① 所有 Python 脚本通过 `python -m compileall -q .`（CI 验证）；②

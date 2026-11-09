@@ -1,5 +1,7 @@
 # Loop Engineering v4.0
 
+[![CI](https://github.com/aidless/loop-engineering/actions/workflows/ci.yml/badge.svg)](https://github.com/aidless/loop-engineering/actions/workflows/ci.yml)
+
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > 从单论文循环到跨论文智能审阅系统

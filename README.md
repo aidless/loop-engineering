@@ -76,6 +76,22 @@ Phase 0 (基线评估) → Phase 1 (格式转换) → Phase 2 (内容审阅★)
 
 每个 Phase 有前置条件、退出标准、最大轮次限制。
 
+工具与流水线的真实对应关系（据仓库根目录的工具集绘制）：
+
+```mermaid
+flowchart LR
+    subgraph PH["六阶段流水线（registry.yaml 逐篇记录）"]
+        P0["Phase 0<br/>基线评估"] --> P1["Phase 1<br/>格式转换"] -->
+        P2["Phase 2<br/>内容审阅 ★"] --> P3["Phase 3<br/>润色"] -->
+        P4["Phase 4<br/>匿名化"] --> P5["Phase 5<br/>提交就绪"]
+    end
+    INIT["init_paper.py<br/>生成骨架 + 写入 registry.yaml"] --> P0
+    PRE["pre_review.py<br/>Tier 1 扫描（7 类阻断规则）"] -.->|"审阅输入"| P2
+    RESP["respond.py<br/>交互式逐条标记 resolved"] -.-> P2
+    ADV["advance_phase.py<br/>前置条件校验后才放行"] -.->|"推进每个 Phase"| PH
+    MON["status.py / audit.py / portfolio_health.py<br/>仪表盘 · TMLR 基线对比 · 健康快照"] -.->|"全程观测"| PH
+```
+
 ## 审阅规则库
 
 从 3 篇论文的 11 轮审阅中提取，分三个 Tier：

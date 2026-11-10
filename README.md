@@ -81,9 +81,7 @@ Phase 0 (基线评估) → Phase 1 (格式转换) → Phase 2 (内容审阅★)
 ```mermaid
 flowchart LR
     subgraph PH["六阶段流水线（registry.yaml 逐篇记录）"]
-        P0["Phase 0<br/>基线评估"] --> P1["Phase 1<br/>格式转换"] -->
-        P2["Phase 2<br/>内容审阅 ★"] --> P3["Phase 3<br/>润色"] -->
-        P4["Phase 4<br/>匿名化"] --> P5["Phase 5<br/>提交就绪"]
+        P0["Phase 0<br/>基线评估"] --> P1["Phase 1<br/>格式转换"] --> P2["Phase 2<br/>内容审阅 ★"] --> P3["Phase 3<br/>润色"] --> P4["Phase 4<br/>匿名化"] --> P5["Phase 5<br/>提交就绪"]
     end
     INIT["init_paper.py<br/>生成骨架 + 写入 registry.yaml"] --> P0
     PRE["pre_review.py<br/>Tier 1 扫描（7 类阻断规则）"] -.->|"审阅输入"| P2

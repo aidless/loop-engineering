@@ -213,3 +213,17 @@ python advance_phase.py my_paper
 | v3.1 | 2026-07-01 | 第三方审阅 + 回归测试 + Git自动提交 |
 | v2.0 | 2026-06-28 | 多轮递进式审阅 (快速→深度→对抗→冷重启→终审) |
 | v1.0 | 2026-06-27 | 单论文6阶段循环 |
+
+## 验收题库与复算
+
+`eval/cases.jsonl` 是 20 条可执行验收题，覆盖本仓库 16 条轴：audit 的优先级 / 来源 / 归一化，quality_checks 的 CI 覆盖与效应量，latex_check 的合并 bibitem 与 cite/bib 失配，citation_checker 的作者核对与 bib 解析，score_calibrator 的扣分口径，`registry.yaml` / `tmlr_baselines.yaml` / `rulebook.yaml` 三份数据文件的关键数字，`advance_phase.py` 的 Phase 5 fail-closed 边界，以及 `tests/test_repo_integrity.py` 的 test_ 函数条数。期望值不是抄文档——19 条 `expr` 直接 `import` 本仓库模块现算、`yaml.safe_load` 真读数据文件、或用 `ast` 解析测试文件；1 条 `doc` 校 README 自述的 47 条规则：
+
+```bash
+python3 eval/run_cases.py            # 20/20 cases passed
+python3 eval/run_cases.py --save     # 顺带把结果写进 eval/run-report.json
+python3 eval/run_cases.py --selftest # 篡改第一条期望值，必须变红（19/20，证明这套题会失败）
+```
+
+**数字如何复算**：`eval/run-report.json` 里每条 case 都带 `id` / `axis` / `detail`，把 `detail` 与 `cases.jsonl` 的 `verify` 代码一起看，就能从源码复现该数字；`--save` 重跑一次即可重建整份报告，不需要手工抄数。
+
+**失败归因**：`run_cases.py` 不只报通过率，失败时按 `axis` 汇总（例如 `audit/priority: 1 条 —— LE-01`），直接指出是哪个模块的哪个口径坏了。

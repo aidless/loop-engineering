@@ -1,0 +1,129 @@
+{
+ "total": 20,
+ "passed": 20,
+ "failed": 0,
+ "selftest": false,
+ "failed_by_axis": {},
+ "results": [
+  {
+   "id": "LE-01",
+   "axis": "audit/priority",
+   "ok": true,
+   "detail": "P0"
+  },
+  {
+   "id": "LE-02",
+   "axis": "audit/priority",
+   "ok": true,
+   "detail": "P1"
+  },
+  {
+   "id": "LE-03",
+   "axis": "audit/source",
+   "ok": true,
+   "detail": "latex_check"
+  },
+  {
+   "id": "LE-04",
+   "axis": "audit/source",
+   "ok": true,
+   "detail": "skill_bridge"
+  },
+  {
+   "id": "LE-05",
+   "axis": "audit/normalize",
+   "ok": true,
+   "detail": "2"
+  },
+  {
+   "id": "LE-06",
+   "axis": "quality/ci",
+   "ok": true,
+   "detail": "CI_COVERAGE,CI_ABSTRACT"
+  },
+  {
+   "id": "LE-07",
+   "axis": "quality/ci",
+   "ok": true,
+   "detail": "CI_COVERAGE:pass"
+  },
+  {
+   "id": "LE-08",
+   "axis": "quality/effect",
+   "ok": true,
+   "detail": "EFFECT_SIZE:minor"
+  },
+  {
+   "id": "LE-09",
+   "axis": "latex/bibitem",
+   "ok": true,
+   "detail": "MERGED_BIBENTRY,BIB_NO_AUTHOR"
+  },
+  {
+   "id": "LE-10",
+   "axis": "latex/cite",
+   "ok": true,
+   "detail": "CITE_NO_BIB"
+  },
+  {
+   "id": "LE-11",
+   "axis": "citation/verify",
+   "ok": true,
+   "detail": "✅"
+  },
+  {
+   "id": "LE-12",
+   "axis": "citation/verify",
+   "ok": true,
+   "detail": "🔴"
+  },
+  {
+   "id": "LE-13",
+   "axis": "citation/parse",
+   "ok": true,
+   "detail": "2|Shukla"
+  },
+  {
+   "id": "LE-14",
+   "axis": "score/calibrate",
+   "ok": true,
+   "detail": "7.2"
+  },
+  {
+   "id": "LE-15",
+   "axis": "data/registry",
+   "ok": true,
+   "detail": "6|2|8.4|1"
+  },
+  {
+   "id": "LE-16",
+   "axis": "data/baselines",
+   "ok": true,
+   "detail": "5|4|3|0|0|7.0"
+  },
+  {
+   "id": "LE-17",
+   "axis": "data/rulebook",
+   "ok": true,
+   "detail": "7|10|8|47"
+  },
+  {
+   "id": "LE-18",
+   "axis": "advance/phase5",
+   "ok": true,
+   "detail": "False"
+  },
+  {
+   "id": "LE-19",
+   "axis": "tests/ast",
+   "ok": true,
+   "detail": "5"
+  },
+  {
+   "id": "LE-20",
+   "axis": "doc/readme",
+   "ok": true,
+   "detail": "rulebook.yaml` 共 47 条"
+  }
+ ]
+}

@@ -6,7 +6,7 @@ Usage: python citation_checker.py PAPER_ID [--strict]
 Extracts bib entries, checks arXiv IDs, verifies author/title consistency.
 Output: structured report with ✅⚠️🔴 verdicts.
 """
-import yaml, re, sys, argparse, urllib.request, json, time
+import yaml, re, sys, argparse
 from pathlib import Path
 
 LOOP_DIR = Path(__file__).resolve().parent
@@ -258,7 +258,7 @@ def main():
             print(f"   ⚠️  STRICT: {unverified} unverified entries treated as errors.")
         
         if errors == 0 and (unverified == 0 or not args.strict):
-            print(f"   ✅ Citations clean for submission.")
+            print("   ✅ Citations clean for submission.")
 
 if __name__ == '__main__':
     main()

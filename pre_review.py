@@ -8,7 +8,6 @@ Usage:
     python pre_review.py --help                # Show this help
 """
 import yaml
-import sys
 import re
 import argparse
 from pathlib import Path

@@ -106,12 +106,12 @@ Examples:
         if answer.lower() == 'r':
             q['status'] = 'resolved'
             q['resolved_date'] = datetime.now().strftime('%Y-%m-%d')
-            print(f"   ✅ Marked as resolved.\n")
+            print("   ✅ Marked as resolved.\n")
         elif answer:
             q['fix'] = answer
             q['status'] = 'partial'
             q['updated_date'] = datetime.now().strftime('%Y-%m-%d')
-            print(f"   📝 Fix updated.\n")
+            print("   📝 Fix updated.\n")
     
     # Update summary
     resolved = sum(1 for q in questions.values() if q['status'] == 'resolved')
@@ -130,10 +130,10 @@ Examples:
     
     # Suggest next step
     if resolved == len(questions):
-        print(f"\n🎉 All questions resolved! Run pre-review to verify:")
+        print("\n🎉 All questions resolved! Run pre-review to verify:")
         print(f"   python ../.loop/pre_review.py {paper_id}")
     else:
-        print(f"\n📋 Next: re-run this tool to continue responding.")
+        print("\n📋 Next: re-run this tool to continue responding.")
         print(f"   python ../.loop/respond.py {paper_id}")
 
 if __name__ == '__main__':

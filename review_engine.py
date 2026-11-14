@@ -5,8 +5,6 @@ Usage: python review_engine.py --all [--tier 1,2,3] [--output reviews/]
 """
 import yaml, sys, argparse, re, json
 from pathlib import Path
-from datetime import datetime
-from collections import defaultdict
 
 LOOP_DIR = Path(__file__).resolve().parent
 AETTL_DIR = LOOP_DIR.parent
@@ -160,7 +158,7 @@ def _check_terms(text):
     for pattern, desc in variants:
         found = set(re.findall(pattern, text, re.I))
         if len(found) > 2:
-            issues.append((f'{len(found)} variants of "{desc.split(" vs ")[0]}"', f'Unify to one term'))
+            issues.append((f'{len(found)} variants of "{desc.split(" vs ")[0]}"', 'Unify to one term'))
     return issues
 
 def _run_quality_checks(text):

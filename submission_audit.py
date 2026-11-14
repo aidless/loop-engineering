@@ -5,9 +5,8 @@ Usage: python submission_audit.py PAPER_ID [--strict] [--json]
 Checks: refs, figures, stats, TMLR compliance, anonymization, citations, consistency,
         CI coverage, effect sizes, table/fig consistency, small-N sweeps, notation, multi-compare
 """
-import yaml, sys, argparse, re, json, os
+import yaml, sys, argparse, re, json
 from pathlib import Path
-from datetime import datetime
 from collections import defaultdict
 
 LOOP_DIR = Path(__file__).resolve().parent

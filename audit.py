@@ -457,7 +457,7 @@ Examples:
                 emoji = '✅' if score >= 8 else '⚠️' if score >= 6 else '🔴'
                 print(f"    {emoji} Score: {score}/10  P0:{p0} P1:{p1} P2:{p2}")
             else:
-                print(f"    ❌ Error")
+                print("    ❌ Error")
         print(f"\n{'='*65}")
         return
 
@@ -476,7 +476,7 @@ Examples:
         prompt, path = generate_prompt(paper_id)
         if prompt:
             print(f"✅ Agent review prompt: {path}")
-            print(f"   Send to agent, save response, then parse.")
+            print("   Send to agent, save response, then parse.")
         else:
             print(f"❌ {path}")
         return

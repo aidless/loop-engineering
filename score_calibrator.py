@@ -135,14 +135,14 @@ def main():
     elif calibrated:
         print(f"   → Below TMLR median by {agg['median_estimated_score'] - calibrated:.1f} points ⚠️")
     
-    print(f"\n   Penalties applied:")
+    print("\n   Penalties applied:")
     if penalties:
         for name, penalty in penalties:
             print(f"   {penalty:+.1f}  {name}")
     else:
-        print(f"   (none) — paper meets or exceeds TMLR baseline on all dimensions")
+        print("   (none) — paper meets or exceeds TMLR baseline on all dimensions")
     
-    print(f"\n   Paper stats detected:")
+    print("\n   Paper stats detected:")
     print(f"   Min N: {stats.get('min_n', 'unknown')}  |  CI: {'✅' if stats.get('has_ci') else '❌'}  |  Effect size: {'✅' if stats.get('has_effect_size') else '❌'}")
     print(f"   Datasets: {stats.get('datasets_mentioned', 0)}  |  Self-cite: {stats.get('self_cite_rate', 0)*100:.0f}%  |  Confound ack: {'✅' if stats.get('acknowledges_confound') else '❌'}")
 

@@ -3,9 +3,8 @@
 One-command overview of all papers: scores, issues, readiness.
 Usage: python portfolio_health.py [--detail]
 """
-import yaml, sys, argparse
+import yaml, argparse
 from pathlib import Path
-from datetime import datetime
 
 LOOP_DIR = Path(__file__).resolve().parent
 AETTL_DIR = LOOP_DIR.parent
@@ -84,7 +83,7 @@ def main():
     
     agg = baselines['aggregate']
     print(f"\n   {'='*65}")
-    print(f"   📊 Summary")
+    print("   📊 Summary")
     print(f"   🚀 Ready to submit:  {ready}")
     print(f"   🔧 In progress:      {in_progress}")
     print(f"   🌱 Seeds:            {seeds}")

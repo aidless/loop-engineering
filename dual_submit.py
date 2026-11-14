@@ -3,7 +3,7 @@
 Generates TMLR (anonymous) and arXiv (signed) versions from a single canonical source.
 Usage: python dual_submit.py PAPER_ID [--arxiv] [--tmlr] [--all]
 """
-import yaml, sys, argparse, re, shutil, subprocess, os
+import yaml, sys, argparse, re, subprocess
 from pathlib import Path
 
 LOOP_DIR = Path(__file__).resolve().parent
@@ -204,7 +204,7 @@ Examples:
             if pdf:
                 print(f"   ✅ TMLR:  {pdf.name} ({pdf.stat().st_size//1024}KB)")
             else:
-                print(f"   ⚠️  TMLR compilation failed — check log")
+                print("   ⚠️  TMLR compilation failed — check log")
         
         if args.arxiv:
             arxiv_path = generate_arxiv_version(content, paper_dir)
@@ -212,7 +212,7 @@ Examples:
             if pdf:
                 print(f"   ✅ arXiv: {pdf.name} ({pdf.stat().st_size//1024}KB)")
             else:
-                print(f"   ⚠️  arXiv compilation failed — check log")
+                print("   ⚠️  arXiv compilation failed — check log")
             
             if args.zip and pdf:
                 zip_path = create_arxiv_zip(paper_dir, paper_id)

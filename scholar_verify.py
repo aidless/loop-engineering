@@ -8,7 +8,7 @@ Usage:
   python scholar_verify.py PAPER_ID --novelty # Also search for prior work on claims
   python scholar_verify.py PAPER_ID --json   # JSON output
 """
-import re, sys, json, argparse, time
+import re, json, argparse, time
 from pathlib import Path
 from urllib.request import urlopen, Request
 from urllib.parse import quote
@@ -281,7 +281,7 @@ def print_report(result):
     print(f"  Issues:       {len(result['issues'])}")
 
     if result['issues']:
-        print(f"\n  ⚠️  Issues:")
+        print("\n  ⚠️  Issues:")
         for issue in result['issues']:
             status = '✅' if issue.get('found') else '❌'
             print(f"    {status} [{issue['key']}] {issue.get('issue', 'unknown')}")

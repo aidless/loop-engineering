@@ -7,7 +7,7 @@ Usage:
   python agent_review.py PAPER_ID --parse response.md  # Parse agent response
   python agent_review.py PAPER_ID --report     # Show cached review
 """
-import re, sys, json, argparse, yaml
+import re, json, argparse, yaml
 from pathlib import Path
 from datetime import datetime
 
@@ -251,7 +251,7 @@ def main():
         if prompt:
             print(f"✅ Prompt generated: {path}")
             print(f"   Length: {len(prompt)} chars")
-            print(f"   To review: send prompt to agent, save response, then:")
+            print("   To review: send prompt to agent, save response, then:")
             print(f"   python agent_review.py {args.paper_id} --parse response.md")
         else:
             print(f"❌ {path}")

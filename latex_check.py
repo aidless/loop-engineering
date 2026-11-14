@@ -6,9 +6,8 @@ Usage:
   python latex_check.py PAPER_ID
   python latex_check.py PAPER_ID --json
 """
-import re, sys, json, argparse
+import re, json, argparse
 from pathlib import Path
-from collections import Counter
 
 LOOP_DIR = Path(__file__).resolve().parent
 AETTL_DIR = LOOP_DIR.parent

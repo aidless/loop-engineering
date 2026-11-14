@@ -124,14 +124,14 @@ Examples:
     state_path = paper_dir / '.loop' / 'state.yaml'
     
     if not state_path.exists():
-        print(f"❌ No .loop/state.yaml found. Initialize paper first: python init_paper.py")
+        print("❌ No .loop/state.yaml found. Initialize paper first: python init_paper.py")
         sys.exit(1)
     
     state = load_yaml(state_path)
     current = state['current_phase']
     
     if current >= 5:
-        print(f"✅ Paper is already at Phase 5 (submission ready). No further phases.")
+        print("✅ Paper is already at Phase 5 (submission ready). No further phases.")
         return
     
     next_phase = current + 1
@@ -141,7 +141,7 @@ Examples:
     print(f"   Paper: {paper['short_title']}")
     
     if current == 5:
-        print(f"\n🔴 Phase 5 → Complete requires USER SIGN-OFF.")
+        print("\n🔴 Phase 5 → Complete requires USER SIGN-OFF.")
         if not force:
             print("   Use --force only after manually reviewing the final PDF.")
             sys.exit(1)
@@ -149,7 +149,7 @@ Examples:
     # Check preconditions
     all_pass = True
     if preconditions:
-        print(f"\n   Checking preconditions:")
+        print("\n   Checking preconditions:")
         for name, desc, check_fn in preconditions:
             passed, detail = check_fn(paper_dir)
             icon = '✅' if passed else '❌'
@@ -158,24 +158,24 @@ Examples:
                 all_pass = False
     
     if not all_pass and not force and not dry_run:
-        print(f"\n❌ Preconditions not met. Fix issues, use --force, or use --dry-run to inspect.")
+        print("\n❌ Preconditions not met. Fix issues, use --force, or use --dry-run to inspect.")
         sys.exit(1)
     
     if dry_run:
         if all_pass:
             print(f"\n✅ All preconditions met — ready to advance to Phase {next_phase}!")
-            print(f"   Run without --dry-run to advance.")
+            print("   Run without --dry-run to advance.")
         else:
-            print(f"\n📋 Preconditions NOT met. Missing items:")
+            print("\n📋 Preconditions NOT met. Missing items:")
             for name, desc, check_fn in preconditions:
                 passed, detail = check_fn(paper_dir)
                 if not passed:
                     print(f"   ❌ {name}: {detail}")
-            print(f"\n   Fix these before advancing, or use --force.")
+            print("\n   Fix these before advancing, or use --force.")
         return
     
     if force and not all_pass:
-        print(f"\n⚠️  Forcing advancement despite failed preconditions.")
+        print("\n⚠️  Forcing advancement despite failed preconditions.")
     
     # Backup old state
     backup_path = state_path.with_suffix('.yaml.bak')

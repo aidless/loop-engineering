@@ -146,7 +146,7 @@ def print_report(result):
         return
 
     print(f"\n{'='*65}")
-    print(f"🤖 Agent Review")
+    print("🤖 Agent Review")
     print(f"{'='*65}")
 
     if result.get('overall_assessment'):
@@ -170,7 +170,7 @@ def print_report(result):
                 print(f"       Fix: {issue['fix'][:60]}")
 
     if result.get('strengths'):
-        print(f"\n  Strengths:")
+        print("\n  Strengths:")
         for s in result['strengths'][:3]:
             print(f"    ✅ {s}")
 

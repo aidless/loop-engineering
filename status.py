@@ -8,7 +8,6 @@ Usage:
     python status.py --help
 """
 import yaml
-import sys
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -51,7 +50,7 @@ Examples:
     papers = registry['papers']
     
     print("=" * 65)
-    print(f"  🔁 Loop Engineering v4.0 — Global Dashboard")
+    print("  🔁 Loop Engineering v4.0 — Global Dashboard")
     print(f"  🕐 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"  📊 {registry['summary']['total_papers']} papers tracked | {registry['summary']['papers_with_loop']} with Loop")
     print("=" * 65)

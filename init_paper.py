@@ -9,8 +9,6 @@ Usage:
 """
 import yaml
 import sys
-import os
-import shutil
 import argparse
 from pathlib import Path
 from datetime import datetime
@@ -274,7 +272,7 @@ Examples:
     # Create state.yaml
     state = create_state_yaml(paper_id, title)
     save_yaml(paper_dir / '.loop' / 'state.yaml', state)
-    print(f"   📄 .loop/state.yaml")
+    print("   📄 .loop/state.yaml")
     
     # Register in global registry
     registered = register_in_registry(paper_id, dirname, title, venue, paper_type)

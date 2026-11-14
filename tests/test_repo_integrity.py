@@ -9,7 +9,7 @@ These assert real facts about the repo's actual files:
 
 No fabricated data: every assertion reads the actual repo files.
 """
-import os, sys, py_compile, glob, re
+import os, py_compile, glob, re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 

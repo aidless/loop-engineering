@@ -168,14 +168,14 @@ def print_report(eval_result):
     print(f"   Overall: {eval_result['total_score']:.1f}/10 — {eval_result['grade']}")
     
     # Recommendations
-    print(f"\n   💡 Recommendations:")
+    print("\n   💡 Recommendations:")
     worst_dim = min(dims.items(), key=lambda x: x[1]['score'])
     print(f"      Priority: Improve '{worst_dim[1]['name']}' ({worst_dim[1]['score']:.0%})")
     print(f"      {worst_dim[1]['issues'][0][1] if worst_dim[1]['issues'] else 'All checks passed'}")
     
     all_issues = sum(len(d['issues']) for d in dims.values())
     if all_issues == 0:
-        print(f"      ✅ All quality checks passed!")
+        print("      ✅ All quality checks passed!")
     
     print(f"{'='*65}")
 

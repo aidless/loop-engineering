@@ -7,7 +7,11 @@
 #   6 篇论文、cross_ref.yaml 的跨文规则）。实测 `5 passed`，0.3s。
 # 说明: 本仓 CI（.github/workflows/ci.yml）另外跑「全部相对 Markdown 链接可解析」，实测
 #   0 条坏链；那一步未并入 eval，需要时手工跑 ci.yml 里的 PY 段。
-.PHONY: eval
+.PHONY: eval check
+
+check:
+	python3 -m pytest tests/test_honesty_gate.py tests/test_repo_integrity.py -q
+	python3 eval/run_cases.py
 
 eval:
 	python3 -m pytest tests/ -q

@@ -1,18 +1,62 @@
 #!/usr/bin/env python3
-"""Loop Engineering v4.1 — Global Status Dashboard
+"""Loop Engineering 0.1.0-dev — registry dashboard.
+
+Prints the papers listed in registry.yaml and both the stored TMLR aggregate
+and the medians that can be recomputed from numeric fields. The stored
+aggregate is hand-coded. This script does not read the papers.
 
 Usage:
-    python status.py                  # Summary of all papers
-    python status.py --all            # Same as default
-    python status.py PAPER-A          # Detailed view of one paper
-    python status.py --help
+    python status.py --all
+    python status.py PAPER-A
 """
-import yaml
 import argparse
-from pathlib import Path
+import statistics
 from datetime import datetime
+from pathlib import Path
+
+import yaml
 
 LOOP_DIR = Path(__file__).resolve().parent
+
+
+def version_string():
+    return (LOOP_DIR / 'VERSION').read_text(encoding='utf-8').strip()
+
+
+def _numeric(value):
+    return isinstance(value, (int, float)) and not isinstance(value, bool)
+
+
+def recompute_baselines(baselines):
+    """Medians and rates computed from the per-paper fields.
+
+    Dataset and model medians use numeric fields only. Strings such as
+    "multiple graph benchmarks" are omitted, not parsed. CI and effect-size
+    rates are the share of stored booleans that are true. A statistical-test
+    string counts as reported only when it is not "none reported" or
+    "not specified". None of these fields were checked against the PDFs.
+    """
+    rows = baselines['baselines']
+    datasets = [row['datasets'] for row in rows if _numeric(row.get('datasets'))]
+    models = [row['models'] for row in rows if _numeric(row.get('models'))]
+    scores = [row['score_estimated'] for row in rows]
+    n = len(rows)
+    absent = {'none reported', 'not specified'}
+    tests_reported = sum(
+        1 for row in rows
+        if str(row.get('statistical_tests', '')).strip().lower() not in absent
+    )
+    return {
+        'n_papers': n,
+        'n_numeric_datasets': len(datasets),
+        'n_numeric_models': len(models),
+        'median_datasets_numeric': statistics.median(datasets) if datasets else None,
+        'median_models_numeric': statistics.median(models) if models else None,
+        'ci_flag_pct': int(100 * sum(row.get('reports_ci') is True for row in rows) / n),
+        'effect_size_flag_pct': int(100 * sum(row.get('reports_effect_size') is True for row in rows) / n),
+        'median_score': statistics.median(scores),
+        'statistical_tests_reported_pct': int(100 * tests_reported / n),
+    }
 
 def load_yaml(path):
     with open(path, 'r', encoding='utf-8') as f:
@@ -28,7 +72,7 @@ def status_icon(status):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Loop Engineering v4.1 — Global Status Dashboard',
+        description='Loop Engineering 0.1.0-dev — registry dashboard',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -50,7 +94,8 @@ Examples:
     papers = registry['papers']
     
     print("=" * 65)
-    print("  🔁 Loop Engineering v4.0 — Global Dashboard")
+    print(f"  Loop Engineering {version_string()} — registry dashboard")
+    print("  Registry loop_version values below are stored strings, not this package version.")
     print(f"  🕐 {datetime.now().strftime('%Y-%m-%d %H:%M')}")
     print(f"  📊 {registry['summary']['total_papers']} papers tracked | {registry['summary']['papers_with_loop']} with Loop")
     print("=" * 65)
@@ -86,12 +131,20 @@ Examples:
         loop = "v" + str(p['loop_version']) if p.get('loop_version') else "⬜"
         print(f"  {pid:<12} {title:<25} {phase_str:<8} {score:<8} {loop:<6}")
     
-    # TMLR baseline reference
-    print(f"\n  📐 TMLR Baseline (median of {len(baselines['baselines'])} papers):")
+    # TMLR baseline reference. The aggregate block is hand-coded. The
+    # recomputed line uses only fields that are actually numbers.
     agg = baselines['aggregate']
-    print(f"     Datasets: {agg['median_datasets']} | Models: {agg['median_models']}")
-    print(f"     CI reported: {agg['ci_reported_pct']}% | Effect sizes: {agg['effect_size_reported_pct']}%")
-    print(f"     Median score: {agg['median_estimated_score']}/10")
+    rec = recompute_baselines(baselines)
+    print(f"\n  TMLR baseline file ({rec['n_papers']} hand-coded rows):")
+    print(f"     Recomputed numeric medians: datasets {rec['median_datasets_numeric']} "
+          f"(n={rec['n_numeric_datasets']}/{rec['n_papers']}), "
+          f"models {rec['median_models_numeric']} "
+          f"(n={rec['n_numeric_models']}/{rec['n_papers']})")
+    print(f"     Stored aggregate {agg['median_datasets']} datasets / {agg['median_models']} models "
+          f"is hand-coded and is not that median.")
+    print(f"     CI flag {rec['ci_flag_pct']}% | effect-size flag {rec['effect_size_flag_pct']}% "
+          f"(hand-coded booleans, not verified against the papers)")
+    print(f"     Median of stored score_estimated: {rec['median_score']}")
     
     # Cross-paper insights
     cross = load_yaml(LOOP_DIR / 'cross_ref.yaml')

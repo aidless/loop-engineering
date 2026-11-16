@@ -105,7 +105,7 @@
    "id": "LE-17",
    "axis": "data/rulebook",
    "ok": true,
-   "detail": "7|10|8|47"
+   "detail": "7|10|8|38"
   },
   {
    "id": "LE-18",
@@ -123,7 +123,7 @@
    "id": "LE-20",
    "axis": "doc/readme",
    "ok": true,
-   "detail": "rulebook.yaml` 共 47 条"
+   "detail": "Loop Engineering 0.1.0-dev"
   }
  ]
 }

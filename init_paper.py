@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Loop Engineering v4.1 — Paper Initializer
+"""Loop Engineering 0.1.0-dev — Paper Initializer
 Creates a standardized paper skeleton from templates.
 
 Usage:
@@ -34,7 +34,7 @@ PAPER_SKELETON = {
 - **Type**: {paper_type}
 - **Status**: Phase 0 — Initialized
 - **Created**: {date}
-- **Loop**: v4.0
+- **Loop**: 0.1.0-dev
 
 ## Quick Start
 ```bash
@@ -210,7 +210,7 @@ def register_in_registry(paper_id, dirname, title, venue, paper_type):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Loop Engineering v4.1 — Paper Initializer',
+        description='Loop Engineering 0.1.0-dev — Paper Initializer',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

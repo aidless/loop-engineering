@@ -1,0 +1,62 @@
+[
+  {
+    "rule": "C1",
+    "severity": "critical",
+    "description": "\"First/Novel\" claim detected: \"We are the first to show this....\"",
+    "fix": "Verify no prior work did the same thing. Search literature for each claim."
+  },
+  {
+    "rule": "C9",
+    "severity": "critical",
+    "description": "Null effect phrasing: \"no statistically significant difference (p = 0....\"",
+    "fix": "Use \"insufficient evidence to reject the null\" not \"no effect exists\"."
+  },
+  {
+    "rule": "C7",
+    "severity": "minor",
+    "description": "Count claims detected: ['three']. Verify enumerated items match count.",
+    "fix": "Count the actual items and match the number."
+  },
+  {
+    "rule": "C4",
+    "severity": "critical",
+    "description": "Monotonic claims: 1 found. Verify per-condition data.",
+    "fix": "Check per-condition data for non-monotonic violations. Use \"broadly\" or \"descriptively\" qualifiers."
+  },
+  {
+    "rule": "W4",
+    "severity": "minor",
+    "description": "Chinglish: \"different with\" → \"different with\" → \"different from\"",
+    "fix": "\"different with\" → \"different from\""
+  },
+  {
+    "rule": "W4",
+    "severity": "minor",
+    "description": "Chinglish: \"compare with\" → \"compare with\" → \"compared with/to\"",
+    "fix": "\"compare with\" → \"compared with/to\""
+  },
+  {
+    "rule": "W4",
+    "severity": "minor",
+    "description": "Chinglish: \"prove\" → \"prove\" → \"demonstrate/show\" (unless mathematical proof)",
+    "fix": "\"prove\" → \"demonstrate/show\" (unless mathematical proof)"
+  },
+  {
+    "rule": "W4",
+    "severity": "minor",
+    "description": "Chinglish: \"in the following\" → \"in the following\" → \"below\" or \"in the next section\"",
+    "fix": "\"in the following\" → \"below\" or \"in the next section\""
+  },
+  {
+    "rule": "W4",
+    "severity": "minor",
+    "description": "Chinglish: \"Most of \" → \"most of\" → \"most\" (unless followed by \"the\")",
+    "fix": "\"most of\" → \"most\" (unless followed by \"the\")"
+  },
+  {
+    "rule": "ABSTRACT",
+    "severity": "important",
+    "description": "Abstract density: up to 6 numbers in a single sentence (6 total numbers in abstract).",
+    "fix": "Break dense sentences. Narrative over data dump. Maximum ~4 numbers per sentence."
+  }
+]

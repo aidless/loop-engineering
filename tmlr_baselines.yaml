@@ -1,6 +1,13 @@
-# Loop Engineering v4.0 — TMLR Baseline Database
-# Calibration benchmarks from published TMLR papers
-# Used by baseline_comparison.py to calibrate self-scores
+# HAND-CODED. Not extracted by a script from the PDFs.
+# reports_ci, reports_effect_size, score_estimated, and the prose dataset/model
+# fields were typed by hand. aggregate.median_datasets (4) and median_models (3)
+# are not the median of the numeric fields: only two dataset values and two
+# model values are numbers, and those medians are 4.5 and 3.5.
+# aggregate.statistical_tests_reported_pct is 20, but none of the five
+# statistical_tests strings name a test ("none reported" or "not specified").
+# our_papers_vs_baseline claims "Top 5%" from these five rows. That ranking
+# is not supported by n=5. See FAILURE_MODES.md. Do not treat publication
+# status or the feature flags as verified.
 
 baselines:
   - id: TMLR-01

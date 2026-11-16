@@ -1,16 +1,21 @@
 #!/usr/bin/env python3
-"""Loop Engineering v4.1 — Automated Pre-Review Scanner
-Tier 1 pre-review scan for a paper's main.tex (hard-coded checks; rulebook.yaml is not loaded by this script).
+"""Loop Engineering 0.1.0-dev — hard-coded pre-review scan.
+
+Runs six regular expressions on a LaTeX file (C1, C4, C9, C7, W4, abstract
+number density). Does not load rulebook.yaml. Does not implement Tier-1 rules
+L1, C6, M1, or M3. Tier 2 and Tier 3 are not implemented.
 
 Usage:
-    python pre_review.py PAPER_ID              # Run pre-review on a paper
-    python pre_review.py PAPER_ID --tier 2     # Run Tier 1+2 checks
-    python pre_review.py --help                # Show this help
+    python pre_review.py --tex path/to/main.tex --json
+    python pre_review.py PAPER_ID
 """
-import yaml
-import re
 import argparse
+import json
+import re
+import sys
 from pathlib import Path
+
+import yaml
 
 LOOP_DIR = Path(__file__).resolve().parent
 AETTL_DIR = LOOP_DIR.parent
@@ -116,40 +121,63 @@ def run_tier1_checks(text, paper_name):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Loop Engineering v4.1 — Automated Pre-Review Scanner',
+        description='Loop Engineering 0.1.0-dev — hard-coded pre-review scan',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
-  python pre_review.py PAPER-A           # Run Tier 1 checks
-  python pre_review.py PAPER-A --tier 2  # Run Tier 1+2 checks
-  python pre_review.py PAPER-B --json    # Output as JSON
+  python pre_review.py --tex fixtures/pre_review/trigger.tex --json
+  python pre_review.py PAPER-A
         """
     )
-    parser.add_argument('paper_id', help='Paper ID (e.g., PAPER-A, PAPER-B)')
-    parser.add_argument('--tier', '-t', type=int, default=1, choices=[1, 2, 3], help='Max tier to check (only tier 1 is implemented)')
-    parser.add_argument('--json', '-j', action='store_true', help='Output as JSON (not implemented yet)')
+    parser.add_argument('paper_id', nargs='?', help='Paper ID (e.g., PAPER-A). Not used with --tex.')
+    parser.add_argument('--tex', help='Scan this .tex file instead of a registry paper')
+    parser.add_argument('--tier', '-t', type=int, default=1, choices=[1, 2, 3],
+                        help='Only 1 is implemented. 2 and 3 exit 2.')
+    parser.add_argument('--json', '-j', action='store_true', help='Print the issue list as JSON')
     args = parser.parse_args()
-    
-    paper_id = args.paper_id
-    paper = find_paper(paper_id)
-    if not paper:
-        print(f"Paper '{paper_id}' not found in registry.")
-        return
-    
-    text = read_tex(paper)
-    if not text:
-        print(f"main.tex not found at {AETTL_DIR / paper['path'] / 'main.tex'}")
-        return
-    
+
+    if args.tier != 1:
+        print(
+            "Tier 2 and Tier 3 are not implemented. This command only runs the hard-coded checks.",
+            file=sys.stderr,
+        )
+        return 2
+
+    if args.tex:
+        tex_path = Path(args.tex)
+        if not tex_path.is_file():
+            print(f"tex file not found: {tex_path}", file=sys.stderr)
+            return 1
+        text = tex_path.read_text(encoding='utf-8')
+        paper_id = tex_path.stem
+        paper = {'title': paper_id, 'phase': 'fixture', 'short_title': paper_id}
+    else:
+        if not args.paper_id:
+            print("Provide a paper id or --tex PATH.", file=sys.stderr)
+            return 2
+        paper_id = args.paper_id
+        paper = find_paper(paper_id)
+        if not paper:
+            print(f"Paper '{paper_id}' not found in registry.")
+            return 1
+        text = read_tex(paper)
+        if not text:
+            print(f"main.tex not found at {AETTL_DIR / paper['path'] / 'main.tex'}")
+            return 1
+
+    issues = run_tier1_checks(text, paper.get('short_title', paper_id))
+    if args.json:
+        json.dump(issues, sys.stdout, ensure_ascii=False, indent=2)
+        sys.stdout.write('\n')
+        return 0
+
     print(f"\n🔍 Pre-Review: {paper['title'][:60]}...")
     print(f"   Paper: {paper_id} | Phase: {paper['phase']}")
     print("=" * 60)
     
-    issues = run_tier1_checks(text, paper['short_title'])
-    
     if not issues:
-        print("\n✅ No Tier 1 issues detected!")
-        return
+        print("\nNo hard-coded pattern hits.")
+        return 0
     
     critical = [i for i in issues if i['severity'] == 'critical']
     important = [i for i in issues if i['severity'] == 'important']
@@ -171,7 +199,7 @@ Examples:
     
     print(f"\n{'='*60}")
     print(f"Summary: {len(critical)} critical, {len(important)} important, {len(minor)} minor")
-    print(f"Estimated review time saved: ~{len(issues) * 5} minutes")
+    return 0
 
 if __name__ == '__main__':
-    main()
+    sys.exit(main())

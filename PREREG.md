@@ -1,5 +1,7 @@
 # Loop Engineering — 预注册（PREREG.md）
 
+> **Correction (0.1.0-dev):** The note below was written on 2026-11-02, after the results it describes. Where it says the project had reached a finished cross-paper system, that rules were taken from real review practice, that the rulebook contains 47 rules, or that the baseline medians were measured from published papers, those sentences are **withdrawn**. The current claim is `README.md`. The historical text is kept so the withdrawal is visible.
+
 > 版本：v1.0 · 2026-11-02 · 状态：**已执行到 v4.0，此文档在结果已知后诚实记录**假设与边界。
 > 预注册风格（registered-report）：先声明假设、评测方案、成功标准、明确边界，再对照结果，
 > 避免「事后合理化」。本仓为**跨论文审阅中枢**（可复用规则 + TMLR 基线 + 跨论文关联），

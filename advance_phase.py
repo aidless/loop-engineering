@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Loop Engineering v4.1 — Phase Advancement Tool
+"""Loop Engineering 0.1.0-dev — Phase Advancement Tool
 Validates preconditions before advancing paper to next phase.
 
 Usage:
@@ -97,7 +97,7 @@ def find_paper(paper_id):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Loop Engineering v4.1 — Phase Advancement Tool',
+        description='Loop Engineering 0.1.0-dev — Phase Advancement Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

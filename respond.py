@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Loop Engineering v4.1 — Interactive Reviewer Response Tool
+"""Loop Engineering 0.1.0-dev — Interactive Reviewer Response Tool
 Guides author through responding to reviewer questions.
 
 Usage:
@@ -34,7 +34,7 @@ def find_paper(paper_id):
 
 def main():
     parser = argparse.ArgumentParser(
-        description='Loop Engineering v4.1 — Interactive Reviewer Response Tool',
+        description='Loop Engineering 0.1.0-dev — Interactive Reviewer Response Tool',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:

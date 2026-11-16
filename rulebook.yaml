@@ -1,6 +1,11 @@
-# Loop Engineering v4.0 — Reusable Review Rulebook
-# 82 patterns extracted from 11 review rounds across 3 papers
-# NOTE: pre_review.py currently runs its own hard-coded Tier 1 checks and does NOT load this file.
+# Loop Engineering 0.1.0-dev — review-rule notes
+# Countable entries: tier_1 7, tier_2 10, tier_3 8, defense 4, tier_2_plus 9 = 38.
+# stats.total_patterns used to say 91. Counting the stats keys as rules produced 47.
+# Neither 82 nor 91 nor 47 is the entry count. Source comments that name
+# "3 papers", "11 review rounds", or "paperreview.ai" are unverified annotations:
+# this repository has no review transcripts for them.
+# pre_review.py does not load this file.
+
 
 # ============================================================
 # Tier 1: Blocking — must pass before submission
@@ -293,7 +298,7 @@ tier_2_plus:
 # Statistics
 # ============================================================
 stats:
-  total_patterns: 91
+  total_patterns: 38
   tier_1_critical: 7
   tier_2_important: 10
   tier_2_plus_quality: 9

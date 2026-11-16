@@ -1,0 +1,8 @@
+[
+  {
+    "rule": "C1",
+    "severity": "critical",
+    "description": "\"First/Novel\" claim detected: \"First, we describe the setup....\"",
+    "fix": "Verify no prior work did the same thing. Search literature for each claim."
+  }
+]

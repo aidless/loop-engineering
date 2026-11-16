@@ -1,4 +1,5 @@
-# Loop Engineering v4.0 — Cross-Paper Issue Correlation
+# Spec data. cross_review.py can read this file, but no committed paper
+# produces a report, and nothing here executes the propagation_log.
 # Issues found in one paper that likely apply to others
 
 cross_references:
